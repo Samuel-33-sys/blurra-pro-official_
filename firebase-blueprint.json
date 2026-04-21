@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and subscription data",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "plan": { "type": "string", "enum": ["free", "pro"] },
+        "blurCount": { "type": "number", "description": "Number of blurs used today" },
+        "lastReset": { "type": "string", "format": "date-time", "description": "Last time the daily count was reset" },
+        "uid": { "type": "string" }
+      },
+      "required": ["email", "plan", "blurCount", "lastReset", "uid"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    }
+  }
+}
